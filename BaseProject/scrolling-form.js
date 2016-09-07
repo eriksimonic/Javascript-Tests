@@ -4,7 +4,7 @@
     elements.each(function (i, e) { return $(e).data('index', i); });
     var viewportHeight, middle, topIndex, bottomIndex;
     var setElementActive = function (e) {
-        $(e).addClass('active').find('input').focus();
+        $(e).addClass('active').find('input,select').focus();
     };
     var scrollElementIntoView = function (e) {
         var bRect = e.getBoundingClientRect();
@@ -20,7 +20,8 @@
         });
     };
     elements.on('keydown', function (e) {
-        if (e.keyCode == 13) {
+        console.log(e.target.nodeName);
+        if (e.keyCode == 13 && e.target.nodeName === "INPUT") {
             var index = $(e.delegateTarget).data('index');
             $(e.delegateTarget).removeClass('active');
             index = index + 1;
@@ -64,30 +65,5 @@
         };
     })(docElm);
     $(w).on('scroll resize', findMiddleElement).resize();
-    //let scrollHeight = 0;
-    //let h1 = document.getElementsByTagName("h1")[0];
-    //document.body.style.height = '50000px';
-    //let myFraneticFunction = () => {
-    //   // console.log(document.body.scrollTop);
-    //    if (document.body.scrollTop > 100) {
-    //        if (h1.style.position !== "absolute") {
-    //            h1.style.position = "absolute";
-    //        }
-    //        h1.style.top =
-    //            `${document.body.scrollTop}px`;
-    //        console.log(`
-    //        ${document.body.scrollTop},
-    //        ${document.body.clientHeight},
-    //        ${window.innerHeight},
-    //        ${window.outerHeight},
-    //        `);
-    //    }
-    //    else if (document.body.scrollTop <= 100)
-    //    {
-    //        h1.style.position = "static";
-    //    }
-    //    //console.log(document.body.scrollTop);
-    //};
-    //setInterval(myFraneticFunction, 10);
 })(window, document.documentElement);
 //# sourceMappingURL=scrolling-form.js.map

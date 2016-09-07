@@ -7,7 +7,7 @@
     let viewportHeight, middle, topIndex, bottomIndex;
 
     let setElementActive = (e: Element) => {
-        $(e).addClass('active').find('input').focus();
+        $(e).addClass('active').find('input,select').focus();
     };
 
     
@@ -28,7 +28,8 @@
     };
 
     elements.on('keydown', (e: JQueryEventObject) => {
-        if (e.keyCode == 13) {
+        console.log(e.target.nodeName);
+        if (e.keyCode == 13 && e.target.nodeName === "INPUT") {
             let index = $(e.delegateTarget).data('index');
             $(e.delegateTarget).removeClass('active');
             index = index+1;
@@ -81,32 +82,4 @@
     $(w).on('scroll resize', findMiddleElement).resize();
 
 
-    //let scrollHeight = 0;
-    //let h1 = document.getElementsByTagName("h1")[0];
-    //document.body.style.height = '50000px';
-    //let myFraneticFunction = () => {
-    //   // console.log(document.body.scrollTop);
-    //    if (document.body.scrollTop > 100) {
-    //        if (h1.style.position !== "absolute") {
-    //            h1.style.position = "absolute";
-    //        }
-    //        h1.style.top =
-    //            `${document.body.scrollTop}px`;
-
-    //        console.log(`
-    //        ${document.body.scrollTop},
-    //        ${document.body.clientHeight},
-    //        ${window.innerHeight},
-    //        ${window.outerHeight},
-
-    //        `);
-    //    }
-    //    else if (document.body.scrollTop <= 100)
-    //    {
-    //        h1.style.position = "static";
-    //    }
-    //    //console.log(document.body.scrollTop);
-
-    //};
-    //setInterval(myFraneticFunction, 10);
 })(window, document.documentElement)
