@@ -23,13 +23,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="global.js" />
+    <Content Include="scrolling-form.css">
+      <DependentUpon>scrolling-form.less</DependentUpon>
+    </Content>
     <Content Include="scrolling-form.html" />
     <Content Include="packages.config" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
+    <Content Include="scrolling-form.min.css">
+      <DependentUpon>scrolling-form.css</DependentUpon>
+    </Content>
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +49,7 @@
   <ItemGroup>
     <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.0.min.map" />
+    <Content Include="scrolling-form.less" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

@@ -1,0 +1,62 @@
+﻿body {
+  background-color: rebeccapurple;
+  height: 100%;
+}
+.content {
+  height: 200px;
+  margin-bottom: 15px;
+  transition: opacity ease-in-out 0.35s;
+  opacity: .5;
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+}
+.content > div {
+  position: absolute;
+  margin: auto;
+  top: -9999px;
+  left: -9999px;
+  right: -9999px;
+  bottom: -9999px;
+  height: 80%;
+  width: 50%;
+}
+.content .move-next {
+  opacity: 0;
+  transition: opacity ease-in-out 1s;
+  clear: both;
+  display: block;
+  width: 100px;
+}
+.content input,
+.content select,
+.content textarea {
+  width: 50%;
+  font-size: 32px;
+  border: 1px solid #808080;
+  margin: 0 auto;
+}
+.content textarea {
+  height: 80%;
+}
+.content label {
+  opacity: 0;
+  transition: opacity ease-in-out 0.35s;
+  display: block;
+}
+.active {
+  opacity: 1;
+}
+.active input {
+  border: 1px solid #ff0000;
+}
+.active label {
+  opacity: 1;
+}
+.active .move-next {
+  opacity: 1;
+}
+.footer {
+  height: 50%;
+  background-color: red;
+}

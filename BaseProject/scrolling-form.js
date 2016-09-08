@@ -4,7 +4,7 @@
     elements.each(function (i, e) { return $(e).data('index', i); });
     var viewportHeight, middle, topIndex, bottomIndex;
     var setElementActive = function (e) {
-        $(e).addClass('active').find('input,select').focus();
+        $(e).addClass('active').find('input,select,textarea').focus();
     };
     var scrollElementIntoView = function (e) {
         var bRect = e.getBoundingClientRect();
@@ -19,18 +19,27 @@
             setElementActive(cElement);
         });
     };
-    elements.on('keydown', function (e) {
-        console.log(e.target.nodeName);
-        if (e.keyCode == 13 && e.target.nodeName === "INPUT") {
-            var index = $(e.delegateTarget).data('index');
-            $(e.delegateTarget).removeClass('active');
-            index = index + 1;
-            console.log(index);
-            if (index >= elements.length)
-                index = 0;
-            scrollElementIntoView(elements[index]);
+    var setActiveElementAction = function (e) {
+        var index = $(e).data('index');
+        $(e).removeClass('active');
+        index = index + 1;
+        console.log(index);
+        if (index >= elements.length)
+            index = 0;
+        scrollElementIntoView(elements[index]);
+    };
+    var setActiveElement = function (e) {
+        if (e.keyCode == 13 && e.target.nodeName === "SELECT")
+            return true;
+        if (e.keyCode == 9 || e.keyCode == 13) {
+            setActiveElementAction(e.delegateTarget);
         }
-    });
+        if (/move-next/gi.test(e.target.getAttribute("class"))) {
+            e.preventDefault();
+            setActiveElementAction(e.delegateTarget);
+        }
+    };
+    elements.on('keydown click', setActiveElement);
     var findMiddleElement = (function (docElm) {
         viewportHeight = docElm.clientHeight;
         middle = viewportHeight / 2;
@@ -45,17 +54,13 @@
                 bottomIndex = middle / 1.2;
             }
             elements.each(function (i, e) {
-                var offset = e.getBoundingClientRect();
-                if (offset.top > topIndex && offset.top < bottomIndex) {
+                var offset = e.getBoundingClientRect().top;
+                offset = Math.floor(offset - ($(e).outerHeight() / 7));
+                if (offset > topIndex && offset < bottomIndex) {
                     middleElement = e;
                     return false; // stop iteration
                 }
             });
-            //if (previews === middleElement)
-            //{
-            //    return false;
-            //}
-            // console.log(previews, middleElement);
             if (middleElement) {
                 if (previews)
                     $(previews).removeClass("active");

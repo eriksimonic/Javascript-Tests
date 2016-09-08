@@ -5,50 +5,7 @@
     <meta charset="utf-8" />
     <title>TypeScript HTML App</title>
     <script src="Scripts/jquery-3.1.0.js"></script>
-    <style>
-        body {
-            background-color: rebeccapurple;
-        }
-
-        .content {
-            height: 500px;
-            margin-bottom: 15px;
-            transition: opacity ease-in-out .35s;
-            opacity: .5;
-            overflow: hidden;
-            position: relative;
-        }
-
-            .content input,
-            .content select {
-                border: 1px solid #808080;
-                padding: 35px;
-                position: absolute;
-                margin: auto;
-                top: -9999px;
-                left: -9999px;
-                right: -9999px;
-                bottom: -9999px;
-                width: 50%;
-                height: 45px;
-                font-size: 32px;
-            }
-            .content label {
-                opacity:0;
-               transition: opacity ease-in-out .35s;
-            }
-
-        .active {
-            opacity: 1;
-        }
-
-            .active input {
-                border: 1px solid #ff0000;
-            }
-            .active label {
-                opacity:1;
-            }
-    </style>
+     <link href="scrolling-form.css" rel="stylesheet" />
 </head>
 <body>
     <h1>TypeScript HTML App</h1>
@@ -57,37 +14,63 @@
     </div>
     <script id="myTemplate0" type="text/html">
         <div class="content">
-            <label>Some text to enter {{=index}}</label>
-            <input type="text" placeholder="enter text for {{=index}}" />
+            <div>
+                <label>Some text to enter {{=index}}</label>
+                <input type="text" placeholder="enter text for {{=index}}" />
+                <button class="move-next">
+                    OK
+                </button>
+            </div>
         </div>
     </script>
 
     <script id="myTemplate1" type="text/html">
         <div class="content">
-            <label>Some text to enter {{=index}}</label>
-            <select>
-                <option>a</option>
-                <option>b</option>
-            </select>
-            
+            <div>
+                <label>Some text to enter {{=index}}</label>
+                <select>
+                    <option>a</option>
+                    <option>b</option>
+                </select>
+                <button class="move-next">
+                    OK
+                </button>
+            </div>
         </div>
     </script>
 
     <script id="myTemplate2" type="text/html">
         <div class="content">
-            <label>Some text to enter {{=index}}</label>
-            <input type="checkbox" placeholder="enter text for {{=index}}" />
+            <div>
+                <label>Some text to enter {{=index}}</label>
+                <input type="checkbox" placeholder="enter text for {{=index}}" />
+                <button class="move-next">
+                    OK
+                </button>
+            </div>
+        </div>
+    </script>
+
+     <script id="myTemplate3" type="text/html">
+        <div class="content">
+            <div>
+                <label>Some text to enter {{=index}}</label>
+                <textarea placeholder="Some data for {{=index}}"></textarea>
+                <button class="move-next">
+                    OK
+                </button>
+            </div>
         </div>
     </script>
 
 
+
+    <div class="footer"></div>
     <script src="global.js"></script>
     <script>
         for (var i = 20; i >= 0; i--) {
-            var index = Math.floor((Math.random() * 2));
-            console.log(index);
-
-            $('#myTemplate2').after($(tmpl("myTemplate" + index, {
+            var index = Math.floor((Math.random() * 4));
+            $('#myTemplate3').after($(tmpl("myTemplate" + index, {
                 index: i
             })));
         }
