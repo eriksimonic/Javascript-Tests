@@ -1,4 +1,14 @@
-(function (w, docElm) {
+var _this = this;
+var ScrollingForm;
+(function (ScrollingForm) {
+    var Form = (function () {
+        function Form() {
+        }
+        return Form;
+    }());
+    ScrollingForm.Form = Form;
+})(ScrollingForm || (ScrollingForm = {}));
+var scrollingForm = (function (w, docElm) {
     var previews = null;
     var elements = $('div.content');
     elements.each(function (i, e) { return $(e).data('index', i); });
@@ -39,7 +49,6 @@
             setActiveElementAction(e.delegateTarget);
         }
     };
-    elements.on('keydown click', setActiveElement);
     var findMiddleElement = (function (docElm) {
         viewportHeight = docElm.clientHeight;
         middle = viewportHeight / 2;
@@ -69,6 +78,13 @@
             }
         };
     })(docElm);
+    var initFormPositionDisplay = (function () {
+        //let scrollingPositionIndicator = $('<div class=form-position>').append('<div class=progress-bar>', )
+        return function () {
+        };
+    })();
+    elements.on('keydown click', setActiveElement);
     $(w).on('scroll resize', findMiddleElement).resize();
+    _this.UpdateElements = function () { };
 })(window, document.documentElement);
 //# sourceMappingURL=scrolling-form.js.map

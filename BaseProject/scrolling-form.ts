@@ -1,4 +1,21 @@
-﻿((w: Window, docElm: Element) => {
+﻿module ScrollingForm
+{
+
+
+    export class Form {
+        constructor()
+        {
+
+        }
+    }
+}
+
+
+
+
+
+var scrollingForm = ((w: Window, docElm: Element) => {
+    
     let previews = null;
     let elements = $('div.content');
 
@@ -50,7 +67,8 @@
         }
     };
 
-    elements.on('keydown click', setActiveElement);
+
+
 
     let findMiddleElement = (function (docElm) {
         viewportHeight = docElm.clientHeight;
@@ -83,6 +101,16 @@
             }
         }
     })(docElm);
+    let initFormPositionDisplay = (function () {
 
+        //let scrollingPositionIndicator = $('<div class=form-position>').append('<div class=progress-bar>', )
+        return () => {
+
+        };
+    })()
+    elements.on('keydown click', setActiveElement);
     $(w).on('scroll resize', findMiddleElement).resize();
+
+    this.UpdateElements = () => { };
 })(window, document.documentElement)
+
